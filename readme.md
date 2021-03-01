@@ -23,6 +23,7 @@ https://dotblogs.com.tw/supershowwei/2017/11/16/143448
 
 又照關鍵字狗了一下，發現一篇開office的，[這篇](https://docs.microsoft.com/zh-tw/office/troubleshoot/office-suite-issues/office-not-start-safe-mode-windows)  
 我發現了新天地，在 msconfig 中用選擇性啟動把trend給拔掉就好。拿掉防毒了omg。  
+(過了一天後重新看了一次，其實沒拿掉-.-，還是掛在上面)
 
 結果防火牆設了還是沒辦法......回想起狗到的一篇[Win10安装WSL2及Ubuntu20.04子系统](https://blog.mjyai.com/2020/06/01/win10-wsl2-ubuntu/)，  
 開始將注意力放在LcxxManager上，
@@ -47,3 +48,17 @@ sc start LxssManager
 3: manual
 4: stop
 ```
+
+但之後噴了，`access is denied`，又爬了一堆，最後是將wsl2的vhdx移到別的資料夾
+
+```
+wsl --export Ubuntu-20.04 ubuntu.tar
+wsl --unregister Ubuntu-20.04
+mkdir D:\wsl-linux
+wsl --import Ubuntu-20.04 ubuntu.tar D:\wsl-linux
+(參數的細節可能有錯，靠印象打的，但大概流程就是這樣)
+```
+
+然後`Program files\WhatApps`權限全開(右鍵-內容->安全性->進階設定->改owner改access)
+
+現在沒`access is denied`了，但噴了`0x80041002`
