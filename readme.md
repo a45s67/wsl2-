@@ -28,7 +28,7 @@ https://dotblogs.com.tw/supershowwei/2017/11/16/143448
 結果防火牆設了還是沒辦法......回想起狗到的一篇[Win10安装WSL2及Ubuntu20.04子系统](https://blog.mjyai.com/2020/06/01/win10-wsl2-ubuntu/)，  
 開始將注意力放在LcxxManager上，
 
-```
+```powershell
 sc stop LxssManager
 sc start LxssManager
 ```
@@ -51,7 +51,7 @@ sc start LxssManager
 
 但之後噴了，`access is denied`，又爬了一堆，最後是將wsl2的vhdx移到別的資料夾
 
-```
+```powershell
 wsl --export Ubuntu-20.04 ubuntu.tar
 wsl --unregister Ubuntu-20.04
 mkdir D:\wsl-linux
@@ -70,12 +70,12 @@ wsl --import Ubuntu-20.04 ubuntu.tar D:\wsl-linux
 直接把公司電腦重灌了，順便灌了docker，發現docker 在灌 wsl2 時完全沒遇到什麼問題，順順的灌完了，而且還是非insider program的版本。  
 甚麼?!!  
 既然灌起來了，我就再試最後一次，
-```
+```powershell
 wsl --set-default-version 2
 //然後再從 Microsoft Store抓ubuntu20.04下來裝，跑初始化
 ```
 結果還是遇到`RPC 伺服器無法使用`。那再試另外一條路。
-```
+```powershell
 wsl --set-default-version 1
 // 然後開ubuntu20.04跑初始化
 // 再來 
