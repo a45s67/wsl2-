@@ -61,4 +61,24 @@ wsl --import Ubuntu-20.04 ubuntu.tar D:\wsl-linux
 
 然後`Program files\WhatApps`權限全開(右鍵-內容->安全性->進階設定->改owner改access)
 
-現在沒`access is denied`了，但噴了`0x80041002`
+現在沒`access is denied`了，但噴了`0x80041002`  
+
+這點到最後還是解決不了，看來我還是不夠熟windows......。
+
+----------------------
+### 3/02
+直接把公司電腦重灌了，順便灌了docker，發現docker 在灌 wsl2 時完全沒遇到什麼問題，順順的灌完了，而且還是非insider program的版本。  
+甚麼?!!  
+既然灌起來了，我就再試最後一次，
+```
+wsl --set-default-version 2
+//然後再從 Microsoft Store抓ubuntu20.04下來裝，跑初始化
+```
+結果還是遇到`RPC 伺服器無法使用`。那再試另外一條路。
+```
+wsl --set-default-version 1
+// 然後開ubuntu20.04跑初始化
+// 再來 
+wsl --set-version ubuntu-20.04 2
+```
+轉...轉成功了。於是我的wsl2安裝終於算是結束了，還算圓滿
